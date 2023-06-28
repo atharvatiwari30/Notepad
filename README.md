@@ -15,7 +15,7 @@ Clone the repository:
 
 bash
 Copy code
-git clone https://github.com/atharvatiwari30/virtual-notepad.git
+git clone https://github.com/atharvatiwari30/Notepad
 Change to the project directory:
 
 bash
