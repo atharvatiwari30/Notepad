@@ -233,15 +233,29 @@ def new_file(event = None):
 
 
 
-def open_file(event = None):
-  global text_url
-  text_url = filedialog.askopenfilename(initialdir = os.getcwd(),title="select file", filetypes=((" Text file"," *.txt "),("All Files","*.*")))
-  try:
-    with
+def save_file(self):
+        if self.file_name:
+            with open(self.file_name, "w") as file:
+                file.write(self.text_area.get(1.0, tk.END))
+        else:
+            self.file_name = filedialog.asksaveasfilename(initialfile="Untitled.txt",
+                                                          defaultextension=".txt", 
+                                                          filetypes=[("All Files", "*.*"), ("Text Files", "*.txt")])
+            if self.file_name:
+                with open(self.file_name, "w") as file:
+                    file.write(self.text_area.get(1.0, tk.END))
+                self.root.title(f"Notepad - {self.file_name}")
+
+    def exit_app(self):
+        if messagebox.askokcancel("Quit", "Do you really want to quit?"):
+            self.root.destroy()
 
 
 
-
+if __name__ == "__main__":
+    root = tk.Tk()
+    notepad = Notepad(root)
+    root.mainloop()
 
 main_application.config(menu= main_menu)
 
